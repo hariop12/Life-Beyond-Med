@@ -14,7 +14,7 @@ export function Navigation({ currentPage }: NavigationProps) {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen)
 
   const toggleDropdown = (dropdown: string) => {
-    if (window.innerWidth <= 768) {
+    if (typeof window !== "undefined" && window.innerWidth <= 768) {
       setOpenDropdown(openDropdown === dropdown ? null : dropdown)
     }
   }
@@ -25,7 +25,12 @@ export function Navigation({ currentPage }: NavigationProps) {
         <div className="nav-brand">
           <Link href="/">Life Beyond Medicine</Link>
         </div>
-        <button className="nav-toggle" onClick={toggleMenu}>
+        <button
+          className="nav-toggle"
+          onClick={toggleMenu}
+          aria-label="Toggle navigation menu"
+          aria-expanded={isMenuOpen}
+        >
           <span style={{ transform: isMenuOpen ? "rotate(45deg) translate(5px, 5px)" : "" }}></span>
           <span style={{ opacity: isMenuOpen ? "0" : "1" }}></span>
           <span style={{ transform: isMenuOpen ? "rotate(-45deg) translate(7px, -6px)" : "" }}></span>
@@ -42,16 +47,16 @@ export function Navigation({ currentPage }: NavigationProps) {
             </Link>
           </li>
           <li className={`dropdown ${openDropdown === "professional" ? "active" : ""}`}>
-            <a
-              href="#"
+            <button
               className="dropdown-toggle"
               onClick={(e) => {
                 e.preventDefault()
                 toggleDropdown("professional")
               }}
+              aria-expanded={openDropdown === "professional"}
             >
               Professional Services <i className="fas fa-chevron-down"></i>
-            </a>
+            </button>
             <ul className="dropdown-menu">
               <li>
                 <Link href="/naturopath">Naturopath</Link>
@@ -77,16 +82,16 @@ export function Navigation({ currentPage }: NavigationProps) {
             </ul>
           </li>
           <li className={`dropdown ${openDropdown === "social" ? "active" : ""}`}>
-            <a
-              href="#"
+            <button
               className="dropdown-toggle"
               onClick={(e) => {
                 e.preventDefault()
                 toggleDropdown("social")
               }}
+              aria-expanded={openDropdown === "social"}
             >
               Social Services <i className="fas fa-chevron-down"></i>
-            </a>
+            </button>
             <ul className="dropdown-menu">
               <li>
                 <Link href="/social/sparsh">Sparsh Ek Ehsaas</Link>
@@ -112,7 +117,7 @@ export function Navigation({ currentPage }: NavigationProps) {
           </li>
           <li>
             <Link href="/faq" className={currentPage === "faq" ? "active" : ""}>
-              FAQ's
+              FAQ&apos;s
             </Link>
           </li>
         </ul>

@@ -21,21 +21,17 @@ A modern, full-featured React/Next.js application for holistic healing and welln
 ## Quick Start
 
 ### 1. Install Dependencies
-
 ```bash
 npm install
 ```
 
 ### 2. Set Up Environment Variables
-
 Create a `.env.local` file:
-
 ```env
 MONGODB_URI=your_mongodb_connection_string
 ```
 
 ### 3. Run Development Server
-
 ```bash
 npm run dev
 ```
@@ -74,11 +70,9 @@ See [DEPLOYMENT.md](DEPLOYMENT.md) for detailed deployment instructions to Verce
 ## API Endpoints
 
 ### POST /api/bookings
-
 Submit a new consultation booking.
 
 **Request Body:**
-
 ```json
 {
   "firstName": "John",
@@ -96,7 +90,6 @@ Submit a new consultation booking.
 ```
 
 ### GET /api/bookings
-
 Retrieve all bookings (admin use).
 
 ## MongoDB Setup
@@ -117,7 +110,6 @@ MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/database
 ## Original Design Preserved
 
 This React conversion maintains 100% of the original HTML/CSS design:
-
 - All original CSS files converted to globals.css
 - Same UI components and layout
 - Same color scheme and typography

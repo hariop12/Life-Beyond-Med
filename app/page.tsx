@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 
@@ -54,7 +55,15 @@ export default function Home() {
         <div className="carousel-container">
           {slides.map((slide, index) => (
             <div key={index} className={`carousel-slide ${index === currentSlide ? "active" : ""}`}>
-              <img src={slide.image || "/placeholder.svg"} alt={slide.alt} className="carousel-image" />
+              <Image
+                src={slide.image || "/placeholder.svg"}
+                alt={slide.alt}
+                className="carousel-image"
+                width={1600}
+                height={900}
+                priority={index === 0}
+                unoptimized
+              />
               <div className="carousel-content">
                 <h1>{slide.title}</h1>
                 <p>{slide.description}</p>
@@ -65,19 +74,20 @@ export default function Home() {
             </div>
           ))}
         </div>
-        <button className="carousel-btn prev" onClick={prevSlide}>
+        <button className="carousel-btn prev" onClick={prevSlide} aria-label="Previous slide">
           <i className="fas fa-chevron-left"></i>
         </button>
-        <button className="carousel-btn next" onClick={nextSlide}>
+        <button className="carousel-btn next" onClick={nextSlide} aria-label="Next slide">
           <i className="fas fa-chevron-right"></i>
         </button>
         <div className="carousel-indicators">
           {slides.map((_, index) => (
-            <span
+            <button
               key={index}
               className={`indicator ${index === currentSlide ? "active" : ""}`}
               onClick={() => setCurrentSlide(index)}
-            ></span>
+              aria-label={`Go to slide ${index + 1}`}
+            />
           ))}
         </div>
       </section>
@@ -200,7 +210,14 @@ export default function Home() {
               },
             ].map((service, index) => (
               <div key={index} className="service-card">
-                <img src={service.image || "/placeholder.svg"} alt={service.title} className="service-image" />
+                <Image
+                  src={service.image || "/placeholder.svg"}
+                  alt={service.title}
+                  className="service-image"
+                  width={400}
+                  height={300}
+                  unoptimized
+                />
                 <div className="service-content">
                   <h3>{service.title}</h3>
                   <p>{service.description}</p>

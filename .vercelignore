@@ -1,0 +1,10 @@
+# Files to ignore during Vercel deployment
+*.html
+*.md
+!README.md
+admin/
+js/
+css/
+images/
+QUICK-START.md
+SETUP.md

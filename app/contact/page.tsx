@@ -8,6 +8,7 @@ import { Footer } from "@/components/footer"
 
 export default function Contact() {
   const [showSuccess, setShowSuccess] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -22,26 +23,48 @@ export default function Contact() {
     terms: false,
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Form submission logic would go here
-    setShowSuccess(true)
-    setTimeout(() => {
-      setShowSuccess(false)
-      setFormData({
-        firstName: "",
-        lastName: "",
-        email: "",
-        phone: "",
-        service: "",
-        date: "",
-        time: "",
-        consultationType: "in-person",
-        message: "",
-        firstVisit: false,
-        terms: false,
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch("/api/bookings", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
       })
-    }, 5000)
+
+      const data = await response.json()
+
+      if (data.success) {
+        setShowSuccess(true)
+        setTimeout(() => {
+          setShowSuccess(false)
+          setFormData({
+            firstName: "",
+            lastName: "",
+            email: "",
+            phone: "",
+            service: "",
+            date: "",
+            time: "",
+            consultationType: "in-person",
+            message: "",
+            firstVisit: false,
+            terms: false,
+          })
+        }, 5000)
+      } else {
+        alert("Failed to submit booking. Please try again.")
+      }
+    } catch (error) {
+      console.error("Submission error:", error)
+      alert("An error occurred. Please try again.")
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
@@ -213,8 +236,8 @@ export default function Contact() {
                     </label>
                   </div>
 
-                  <button type="submit" className="btn btn-primary btn-large">
-                    Book Consultation
+                  <button type="submit" className="btn btn-primary btn-large" disabled={isSubmitting}>
+                    {isSubmitting ? "Submitting..." : "Book Consultation"}
                   </button>
                 </form>
               ) : (

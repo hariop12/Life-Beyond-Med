@@ -22,7 +22,7 @@ export function Footer() {
                 <Link href="/contact">Contact</Link>
               </li>
               <li>
-                <Link href="/faq">FAQ's</Link>
+                <Link href="/faq">FAQ&apos;s</Link>
               </li>
             </ul>
           </div>
@@ -46,16 +46,16 @@ export function Footer() {
           <div className="footer-section">
             <h3>Connect With Us</h3>
             <div className="social-links">
-              <a href="#">
+              <a href="#" aria-label="Facebook">
                 <i className="fab fa-facebook"></i>
               </a>
-              <a href="#">
+              <a href="#" aria-label="Instagram">
                 <i className="fab fa-instagram"></i>
               </a>
-              <a href="#">
+              <a href="#" aria-label="Twitter">
                 <i className="fab fa-twitter"></i>
               </a>
-              <a href="#">
+              <a href="#" aria-label="LinkedIn">
                 <i className="fab fa-linkedin"></i>
               </a>
             </div>

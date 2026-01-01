@@ -1,6 +1,7 @@
 import { Navigation } from "@/components/navigation"
 import { Footer } from "@/components/footer"
 import Link from "next/link"
+import Image from "next/image"
 
 export default function About() {
   return (
@@ -46,9 +47,12 @@ export default function About() {
               </p>
             </div>
             <div className="vision-image">
-              <img
+              <Image
                 src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?w=600&h=400&fit=crop"
                 alt="Holistic wellness"
+                width={600}
+                height={400}
+                unoptimized
               />
             </div>
           </div>

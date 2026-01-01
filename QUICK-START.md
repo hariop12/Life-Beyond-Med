@@ -17,7 +17,8 @@ npm install
 Create a file named `.env` in the root directory:
 
 \`\`\`env
-MONGODB_URI=mongodb://localhost:27017/
+MONGODB_URI=mongodb://localhost:27017/life-beyond-medicine
+PORT=5000
 JWT_SECRET=your-secret-key-here
 ADMIN_USERNAME=admin
 ADMIN_PASSWORD=admin123
